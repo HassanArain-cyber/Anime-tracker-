@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#0b0b12"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<link rel="manifest" href="manifest.json"/>
+<link rel="apple-touch-icon" href="https://placehold.co/192x192/e63462/ffffff?text=AV"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="loader">
+  <div class="loader-logo">ANIMEVAULT</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div class="bg-fx"></div>
+<div class="bg-grid"></div>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🎌</div>
+    <span class="nav-logo-text">ANIMEVAULT</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html"      class="nav-link">🏠 My List</a>
+    <a href="watchlist.html"  class="nav-link active">📋 Watchlist <span class="badge wl-badge" style="display:none">0</span></a>
+    <a href="categories.html" class="nav-link">🎭 Categories</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+    <button class="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html"      class="nav-link">🏠 My List</a>
+  <a href="watchlist.html"  class="nav-link active">📋 Watchlist</a>
+  <a href="categories.html" class="nav-link">🎭 Categories</a>
+</div>
+
+<main class="wrapper">
+  <div class="page-content">
+
+    <div class="page-hero">
+      <div class="page-hero-tag">📋 Coming Up Next</div>
+      <h1>WATCHLIST</h1>
+      <p>Anime you're planning to watch. Hit "Watched" to move them to your main list!</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar" style="margin-bottom:24px">
+      <div class="stat-pill">
+        <span class="stat-icon">📋</span>
+        <div class="stat-info">
+          <div class="stat-num" id="wlCount">0</div>
+          <div class="stat-label">In Watchlist</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add to watchlist -->
+    <div style="margin-bottom:28px;animation:fadeUp .5s ease both">
+      <form id="wlAddForm" style="display:flex;gap:12px;flex-wrap:wrap" onsubmit="handleWlAdd(event)">
+        <div class="anime-search-wrap" style="flex:1;min-width:200px">
+          <input class="form-input" id="wlSearch" type="text"
+            placeholder="🔍 Search anime to add to watchlist…"
+            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+          <span class="searching-spin" id="wlSpin">⟳</span>
+          <div class="sug-list" id="wlSugs"></div>
+        </div>
+        <button type="submit"
+          style="padding:13px 28px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:var(--font-b);font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap;box-shadow:0 4px 20px var(--glow-r);transition:all .3s;flex-shrink:0">
+          ＋ Add
+        </button>
+      </form>
+    </div>
+
+    <!-- Search filter -->
+    <div class="toolbar" style="margin-bottom:20px">
+      <div class="search-box" style="flex:1">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="wlSearchFilter" placeholder="Filter your watchlist…" autocomplete="off"/>
+      </div>
+    </div>
+
+    <!-- Watchlist grid -->
+    <div class="watchlist-grid" id="watchlistGrid"></div>
+
+  </div>
+</main>
+
+<div id="toast-container"></div>
+<script src="app.js"></script>
+<script>initWatchlistPage();</script>
+</body>
+</html>
